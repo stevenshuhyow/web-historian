@@ -16,7 +16,7 @@ exports.handleRequest = function (req, res) {
       index = archive.paths.index;
     }
     res.writeHead(statusCode, httpHelpers.headers);
-    archive.readListOfUrls(req, res, index);
+    archive.readFileData(req, res, index);
   }
 
   if(req.method === "POST"){
