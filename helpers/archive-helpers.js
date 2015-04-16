@@ -43,7 +43,6 @@ exports.readListOfUrls = function(callback){
   fs.readFile(exports.paths.list, "utf8", function(error, data){
     callback(data.split('\n'));
   });
-  console.log("asdlfkja;lskdf")
 };
 
 exports.isUrlInList = function(){

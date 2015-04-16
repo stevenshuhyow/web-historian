@@ -2,11 +2,19 @@
 <html>
 <head>
   <link rel="stylesheet" type="text/css" href="styles.css" />
+  <script src="jquery.js"></script>
+  <script src="../redirect.js"></script>
 </head>
 <body>
+<script>
+   $(function(){
+      app.init();
+    });
+</script>
   Enter a URL here:
   <form method="POST">
-    <input type="input" name="url"></input>
+    <input type="input" name="url" id="url"></input>
+    <button type="submit" >click</button>
   </form>
 </body>
 </html>
