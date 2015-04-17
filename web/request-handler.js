@@ -5,11 +5,8 @@ var fs = require('fs');
 // require more modules/folders here!
 var content;
 exports.handleRequest = function(req, res) {
-console.log(req.method);
   var statusCode;
   var index;
-
-  console.log(req.method)
 
   if(req.method === "OPTIONS"){
     statusCode = 200;
@@ -29,11 +26,24 @@ console.log(req.method);
   }
 
   if(req.method === "POST"){
-    console.log("-----------------------");
+    console.log("POST, REQ-HANDLER.JS");
     statusCode = 302;
-    res.writeHead(statusCode, httpHelpers.headers);
-    var index = archive.paths.list;
-    archive.addUrlToList(req, res, index);
+
+    httpHelpers.gatherData(req, function(data){
+      var reqUrl = data.split("=")[1];
+      archive.isUrlInList(reqUrl, function(index){
+        if(index !== -1){
+          console.log(archive.isUrlInList(reqUrl), "RESULT======")
+          res.writeHead(statusCode, httpHelpers.headers);
+          var index = archive.paths.list;
+          archive.addUrlToList(req, res, index, reqUrl);
+        }
+      })
+
+    });
+
+
+
 
   }
 

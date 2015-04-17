@@ -45,14 +45,17 @@ exports.readListOfUrls = function(callback){
   });
 };
 
-exports.isUrlInList = function(){
+exports.isUrlInList = function(reqUrl, callback){
+  fs.readFile(exports.paths.list, "utf8", function(error, data){
+    var index = data.toString().split('\n').indexOf(reqUrl);
+    callback(index)
+  });
 
 };
 
-exports.addUrlToList = function(req, res, index){
-  console.log(req._postData.url);
-   fs.writeFile(index, req._postData.url+"\n");
-   res.end();
+exports.addUrlToList = function(req, res, index, requrl){
+  fs.appendFile(index, requrl+"\n");
+  res.end();
 };
 
 exports.isURLArchived = function(){

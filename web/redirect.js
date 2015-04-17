@@ -37,7 +37,7 @@ $(function() {
       $('form').on('submit', app.handleSubmit);
     },
     send: function(data) {
-      console.log(data);
+      console.log("IN SEND: ", data);
       // POST the message to the server
       $.ajax({
         url: app.server,
@@ -45,8 +45,8 @@ $(function() {
         data: JSON.stringify(data),
         contentType: 'plain/text',
         success: function (data) {
+
           console.log('url sent');
-          app.fetch();
         },
         error: function (data) {
           console.error('url failed to send');
